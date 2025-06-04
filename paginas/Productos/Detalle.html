@@ -139,7 +139,7 @@
           document.getElementById('prodId').value = producto.PROD_ID;
           document.getElementById('prodNombre').value = producto.PROD_NOMBRE;
           document.getElementById('prodDescripcion').value = producto.PROD_DESCRIPCION;
-          document.getElementById('prodPrecio').value = producto.PROD_PRECIO;
+          document.getElementById('prodPrecio').value = producto.PROD_PRECIO.toFixed(2); // Limitar a 2 decimales
           document.getElementById('prodStock').value = `${producto.PROD_STOCK} unidades`;
           document.getElementById('prodImg').src = producto.PROD_IMG;
           document.getElementById('prodCategoria').value = producto.CAT_ID || '';
