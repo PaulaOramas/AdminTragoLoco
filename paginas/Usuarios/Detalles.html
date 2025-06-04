@@ -112,7 +112,7 @@
     }
 
     // Fetch datos generales del usuario
-    fetch(`http://eltragolocorest.runasp.net/api/Usuario?ciRuc=${ciRuc}`)
+    fetch(`https://eltragolocorest.runasp.net/api/Usuario?ciRuc=${ciRuc}`)
       .then(res => {
         if (!res.ok) throw new Error("Usuario no encontrado");
         return res.json();
@@ -137,7 +137,7 @@
       });
 
     // Fetch datos de login (contraseña y rol)
-    fetch(`http://eltragolocorest.runasp.net/api/Login/Usuario/${ciRuc}`)
+    fetch(`https://eltragolocorest.runasp.net/api/Login/Usuario/${ciRuc}`)
       .then(res => {
         if (!res.ok) throw new Error("Datos de login no encontrados");
         return res.json();

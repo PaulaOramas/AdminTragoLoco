@@ -132,7 +132,7 @@
       }
 
       // Cargar datos del usuario y login
-      fetch(`http://eltragolocorest.runasp.net/api/Usuario?ciRuc=${ciRuc}`)
+      fetch(`https://eltragolocorest.runasp.net/api/Usuario?ciRuc=${ciRuc}`)
         .then(res => {
           if (!res.ok) throw new Error("Usuario no encontrado");
           return res.json();
@@ -156,7 +156,7 @@
           alert("❌ No se pudo obtener el detalle del usuario.");
         });
 
-      fetch(`http://eltragolocorest.runasp.net/api/Login/Usuario/${ciRuc}`)
+      fetch(`https://eltragolocorest.runasp.net/api/Login/Usuario/${ciRuc}`)
         .then(res => {
           if (!res.ok) throw new Error("Datos de login no encontrados");
           return res.json();
@@ -201,14 +201,14 @@
         };
 
         try {
-          const resUsuario = await fetch(`http://eltragolocorest.runasp.net/api/Usuario?ciRuc=${datosUsuario.USU_CI_RUC}`, {
+          const resUsuario = await fetch(`https://eltragolocorest.runasp.net/api/Usuario?ciRuc=${datosUsuario.USU_CI_RUC}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(datosUsuario)
           });
           if (!resUsuario.ok) throw new Error('No se pudo actualizar la información del usuario.');
 
-          const resLogin = await fetch('http://eltragolocorest.runasp.net/api/Login/Actualizar', {
+          const resLogin = await fetch('https://eltragolocorest.runasp.net/api/Login/Actualizar', {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(datosLogin)

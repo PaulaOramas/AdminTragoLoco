@@ -127,16 +127,16 @@
 
     async function obtenerDetalleCompletoFactura(facNumero) {
       try {
-        const resFactura = await fetch(`http://eltragolocorest.runasp.net/api/Factura/${facNumero}`);
+        const resFactura = await fetch(`https://eltragolocorest.runasp.net/api/Factura/${facNumero}`);
         if (!resFactura.ok) throw new Error("No se pudo obtener la factura.");
         const factura = await resFactura.json();
 
-        const resDetalle = await fetch(`http://eltragolocorest.runasp.net/api/DetalleFactura/${facNumero}`);
+        const resDetalle = await fetch(`https://eltragolocorest.runasp.net/api/DetalleFactura/${facNumero}`);
         if (!resDetalle.ok) throw new Error("No se pudo obtener el detalle de la factura.");
         const detalles = await resDetalle.json();
 
         console.log("CI/RUC que se enviará a la API Usuario:", factura.USU_CI_RUC);
-        const resUsuario = await fetch(`http://eltragolocorest.runasp.net/api/Usuario?ciRuc=${factura.USU_CI_RUC}`);
+        const resUsuario = await fetch(`https://eltragolocorest.runasp.net/api/Usuario?ciRuc=${factura.USU_CI_RUC}`);
 
         if (!resUsuario.ok) throw new Error("No se pudo obtener la información del usuario.");
         const usuario = await resUsuario.json();
@@ -156,7 +156,7 @@
 
         let productosHtml = '';
         for (const item of detalles) {
-          const resProducto = await fetch(`http://eltragolocorest.runasp.net/api/Producto/${item.PROD_ID}`);
+          const resProducto = await fetch(`https://eltragolocorest.runasp.net/api/Producto/${item.PROD_ID}`);
           if (!resProducto.ok) throw new Error(`No se pudo obtener el producto con ID ${item.PROD_ID}`);
           const producto = await resProducto.json();
 

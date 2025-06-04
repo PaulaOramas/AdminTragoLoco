@@ -129,7 +129,7 @@
         return;
       }
 
-      fetch(`http://eltragolocorest.runasp.net/api/Producto/${productoId}`)
+      fetch(`https://eltragolocorest.runasp.net/api/Producto/${productoId}`)
         .then(res => {
           if (!res.ok) throw new Error('Producto no encontrado');
           return res.json();

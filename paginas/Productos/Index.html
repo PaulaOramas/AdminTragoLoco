@@ -113,7 +113,7 @@
     });
 
     function cargarCategorias() {
-      fetch(`http://eltragolocorest.runasp.net/api/Categoria`)
+      fetch(`https://eltragolocorest.runasp.net/api/Categoria`)
         .then(res => {
           if (!res.ok) throw new Error("Error al cargar categorías");
           return res.json();
@@ -131,7 +131,7 @@
     }
     
      // Cargar categorías
-    fetch(`http://eltragolocorest.runasp.net/api/Categoria`)
+    fetch(`https://eltragolocorest.runasp.net/api/Categoria`)
       .then(res => res.ok ? res.json() : Promise.reject("Error en categorías"))
       .then(categorias => {
         const select = document.getElementById("filtroCategoria");
@@ -145,7 +145,7 @@
       });
 
     function cargarProductos() {
-      fetch("http://eltragolocorest.runasp.net/api/Producto")
+      fetch("https://eltragolocorest.runasp.net/api/Producto")
         .then(res => {
           if (!res.ok) throw new Error("Error al cargar productos");
           return res.json();

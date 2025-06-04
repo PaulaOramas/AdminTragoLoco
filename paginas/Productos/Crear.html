@@ -156,7 +156,7 @@
     $("#footer-placeholder").load("../Shared/Footer.html");
 
     // Cargar categorías con ID como value y nombre como texto
-    fetch(`http://eltragolocorest.runasp.net/api/Categoria`)
+    fetch(`https://eltragolocorest.runasp.net/api/Categoria`)
       .then(res => {
         if (!res.ok) throw new Error("Error al obtener categorías");
         return res.json();
@@ -203,7 +203,7 @@
       console.log("📦 Enviando producto:", producto); // 👀 Para verificar en consola el CAT_ID
       console.log("📦 JSON enviado al backend:");
       console.log(JSON.stringify(producto)); 
-      fetch('http://eltragolocorest.runasp.net/api/Producto', {
+      fetch('https://eltragolocorest.runasp.net/api/Producto', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

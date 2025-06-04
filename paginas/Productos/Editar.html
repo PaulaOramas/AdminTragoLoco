@@ -100,7 +100,7 @@
     }
 
     // Cargar categorías
-    fetch(`http://eltragolocorest.runasp.net/api/Categoria`)
+    fetch(`https://eltragolocorest.runasp.net/api/Categoria`)
       .then(res => res.ok ? res.json() : Promise.reject("Error al obtener categorías"))
       .then(categorias => {
         const select = document.getElementById("CatId");
@@ -123,7 +123,7 @@
 
     // Cargar los datos del producto a editar
     function cargarProducto(id) {
-      fetch(`http://eltragolocorest.runasp.net/api/Producto/${id}`)
+      fetch(`https://eltragolocorest.runasp.net/api/Producto/${id}`)
         .then(res => res.ok ? res.json() : Promise.reject("Producto no encontrado"))
         .then(prod => {
           document.getElementById("prodId").value = prod.PROD_ID;
@@ -159,7 +159,7 @@
 
       console.log("🔁 Enviando producto actualizado:", producto);
 
-      fetch(`http://eltragolocorest.runasp.net/api/Producto/${producto.PROD_ID}`, {
+      fetch(`https://eltragolocorest.runasp.net/api/Producto/${producto.PROD_ID}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(producto)

@@ -69,7 +69,7 @@
 
     async function cargarFacturas() {
       try {
-        const res = await fetch("http://eltragolocorest.runasp.net/api/Factura");
+        const res = await fetch("https://eltragolocorest.runasp.net/api/Factura");
         if (!res.ok) throw new Error("Error al obtener las facturas");
 
         const facturas = await res.json();
@@ -157,7 +157,7 @@
     async function anularFactura(facNumero) {
       if (!confirm(`⚠️ ¿Estás seguro de anular la factura ${facNumero}? Esta acción no se puede deshacer.`)) return;
 
-      fetch(`http://eltragolocorest.runasp.net/api/Factura?facNumero=${encodeURIComponent(facNumero)}`, {
+      fetch(`https://eltragolocorest.runasp.net/api/Factura?facNumero=${encodeURIComponent(facNumero)}`, {
         method: 'DELETE'
       })
         .then(res => {

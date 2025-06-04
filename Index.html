@@ -125,7 +125,7 @@
     }
 
     // Llamada a la API para obtener login por cedula
-    fetch(`http://eltragolocorest.runasp.net/api/Login/Usuario/${cedula}`)
+    fetch(`https://eltragolocorest.runasp.net/api/Login/Usuario/${cedula}`)
       .then(res => {
         if (!res.ok) throw new Error("Usuario no encontrado");
         return res.json();

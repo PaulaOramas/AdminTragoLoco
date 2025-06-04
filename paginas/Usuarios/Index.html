@@ -80,7 +80,7 @@ $(document).ready(function () {
 });
 
 function cargarUsuarios() {
-  fetch("http://eltragolocorest.runasp.net/api/Usuario")
+  fetch("https://eltragolocorest.runasp.net/api/Usuario")
     .then(res => {
       if (!res.ok) throw new Error("Error al cargar usuarios");
       return res.json();
@@ -165,7 +165,7 @@ function mostrarUsuariosFiltrados(usuarios) {
 
 function eliminarUsuario(ci, nombre) {
   if (confirm(`⚠️ ¿Estás seguro de eliminar a "${nombre}"? Esta acción no se puede deshacer.`)) {
-    fetch(`http://eltragolocorest.runasp.net/api/Usuario?ciRuc=${encodeURIComponent(ci)}`, {
+    fetch(`https://eltragolocorest.runasp.net/api/Usuario?ciRuc=${encodeURIComponent(ci)}`, {
       method: 'DELETE'
     })
       .then(res => {
