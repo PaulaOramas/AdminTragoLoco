@@ -178,26 +178,50 @@ document.addEventListener("DOMContentLoaded", () => {
       USU_ESTADO: "ACT" // o según tu lógica
     };
 
+    const loginDTO = {
+      USU_CI_RUC: ciRuc,
+      PASSWORD: ciRuc,
+      LOG_ROL:"CLI"
+    };
+
     try {
-      const response = await fetch('https://eltragolocorest.runasp.net/api/Usuario', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(usuarioDTO)
-      });
+  // Primero, crear el usuario
+  const responseUsuario = await fetch('https://eltragolocorest.runasp.net/api/Usuario', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(usuarioDTO)
+  });
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(errorText || 'Error al crear el usuario');
-      }
+  if (!responseUsuario.ok) {
+    const errorText = await responseUsuario.text();
+    throw new Error(errorText || 'Error al crear el usuario');
+  }
 
-      alert("✅ Usuario creado correctamente.");
-      form.reset();
+  // Luego, crear el login
+  const responseLogin = await fetch('https://eltragolocorest.runasp.net/api/Login/Insertar', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(loginDTO)
+  });
 
-    } catch (error) {
-      alert("❌ " + error.message);
-    }
+  if (!responseLogin.ok) {
+    const errorText = await responseLogin.text();
+    throw new Error(errorText || 'Error al crear el login');
+  }
+
+  // Si ambos son exitosos
+  alert("✅ Usuario y login creados correctamente.");
+  form.reset(); // Limpiar el formulario
+
+} catch (error) {
+  // Si ocurre cualquier error en cualquiera de los pasos, muestra un único mensaje
+  alert("❌ " + error.message);
+}
+
   });
 });
 </script>
