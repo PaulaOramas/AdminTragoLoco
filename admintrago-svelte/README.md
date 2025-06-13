@@ -1,78 +1,38 @@
-# Admin Trago Loco
+# sv
 
-## Overview
-This project is a web application built using Svelte, designed for managing products, users, and invoices for the "Trago Loco" brand. It features a dashboard with statistics and charts to provide insights into the application's data.
+Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
 
-## Project Structure
-The project is organized as follows:
+## Creating a project
 
-```
-admintrago-svelte
-├── public
-│   ├── index.html          # Main HTML entry point
-│   └── imagenes
-│       └── logo.png       # Logo image for the application
-├── src
-│   ├── App.svelte         # Main Svelte component
-│   ├── main.js            # Entry point for JavaScript
-│   ├── components          # Reusable components
-│   │   ├── Header.svelte   # Header component
-│   │   ├── Footer.svelte   # Footer component
-│   │   ├── StatsSection.svelte # Statistics section component
-│   │   ├── ProductsChart.svelte # Chart for registered products
-│   │   └── UsersChart.svelte    # Chart for user distribution
-│   ├── pages               # Page components
-│   │   ├── Dashboard.svelte # Dashboard view
-│   │   ├── Productos.svelte  # Products management page
-│   │   ├── Usuarios.svelte   # Users management page
-│   │   └── Facturas.svelte   # Invoices management page
-│   └── styles
-│       └── site.css        # CSS styles for the application
-├── package.json            # npm configuration file
-├── svelte.config.js        # Svelte configuration settings
-├── vite.config.js          # Vite configuration settings
-└── README.md               # Project documentation
+If you're seeing this, you've probably already done this step. Congrats!
+
+```bash
+# create a new project in the current directory
+npx sv create
+
+# create a new project in my-app
+npx sv create my-app
 ```
 
-## Getting Started
+## Developing
 
-### Prerequisites
-- Node.js (version 14 or later)
-- npm (Node package manager)
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
-### Installation
-1. Clone the repository:
-   ```
-   git clone <repository-url>
-   cd admintrago-svelte
-   ```
-
-2. Install the dependencies:
-   ```
-   npm install
-   ```
-
-### Running the Application
-To start the development server, run:
-```
+```bash
 npm run dev
-```
-This will start the application on `http://localhost:3000`.
 
-### Building for Production
-To build the application for production, run:
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
 ```
+
+## Building
+
+To create a production version of your app:
+
+```bash
 npm run build
 ```
-The built files will be available in the `dist` directory.
 
-### Deployment
-You can deploy the application to platforms like Netlify or Vercel. Follow the respective platform's instructions for deploying a static site.
+You can preview the production build with `npm run preview`.
 
-## Usage
-- Navigate through the application using the header links.
-- Access the dashboard to view statistics and charts.
-- Manage products, users, and invoices through their respective pages.
-
-## License
-This project is licensed under the MIT License. See the LICENSE file for more details.
+> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.

@@ -1,15 +1,13 @@
-import { vitePreprocess } from '@sveltejs/kit/vite';
+import adapter from '@sveltejs/adapter-auto';
 
-export default {
-  preprocess: vitePreprocess(),
-  kit: {
-    // Specify the adapter for deployment
-    adapter: {
-      name: '@sveltejs/adapter-static',
-      // Options for the adapter can be specified here
-      // For example, you can set a fallback for SPA
-      fallback: 'index.html'
-    },
-    // Other kit options can be added here
-  }
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+	kit: {
+		// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
+		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
+		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
+		adapter: adapter()
+	}
 };
+
+export default config;
