@@ -24,7 +24,7 @@
         if (data.PASSWORD === contrasena && data.LOG_ROL === "ADM") {
           localStorage.setItem("isAdmin", "true");
           localStorage.setItem("adminCiRuc", cedula);
-          window.location.href = "/Dashboard";
+          window.location.href = "/dashboard";
         } else {
           alert("❌ Usuario, contraseña o rol incorrectos.");
           contrasena = '';
