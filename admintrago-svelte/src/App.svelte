@@ -1,7 +1,7 @@
 <script>
   import Header from './components/Header.svelte';
   import Footer from './components/Footer.svelte';
-  import Dashboard from './pages/Dashboard.svelte';
+  import Dashboard from './routes/Dashboard.svelte';
   import { onMount } from 'svelte';
 
   let isAdmin = false;
