@@ -1,9 +1,10 @@
-```svelte
 <script>
+  import "../styles/site.css";
+  
   let cedula = '';
   let contrasena = '';
 
-  function validarYEnviar(e) {
+  async function validarYEnviar(e) {
     e.preventDefault();
 
     if (cedula.length < 10 || cedula.length > 13) {
@@ -15,26 +16,29 @@
       return;
     }
 
-    fetch(`https://eltragolocorest.runasp.net/api/Login/Usuario/${cedula}`)
-      .then(res => {
-        if (!res.ok) throw new Error("Usuario no encontrado");
-        return res.json();
-      })
-      .then(data => {
-        if (data.PASSWORD === contrasena && data.LOG_ROL === "ADM") {
-          localStorage.setItem("isAdmin", "true");
-          localStorage.setItem("adminCiRuc", cedula);
-          window.location.href = "/dashboard";
-        } else {
-          alert("❌ Usuario, contraseña o rol incorrectos.");
-          contrasena = '';
-        }
-      })
-      .catch(err => {
-        console.error(err);
-        alert("❌ Error al autenticar. Verifique sus credenciales.");
+    try {
+      const res = await fetch(`https://eltragolocorest.runasp.net/api/Login/Usuario/${cedula}`);
+      if (!res.ok) {
+        alert("❌ Usuario no encontrado.");
         contrasena = '';
-      });
+        return;
+      }
+      const data = await res.json();
+      console.log("Respuesta de la API:", data);
+
+      if (data.PASSWORD === contrasena && data.LOG_ROL === "ADM") {
+        localStorage.setItem("isAdmin", "true");
+        localStorage.setItem("adminCiRuc", cedula);
+        window.location.href = "/dashboard";
+      } else {
+        alert("❌ Usuario, contraseña o rol incorrectos.");
+        contrasena = '';
+      }
+    } catch (err) {
+      console.error("Error en el fetch:", err);
+      alert("❌ Error al autenticar. Verifique sus credenciales o conexión.");
+      contrasena = '';
+    }
   }
 </script>
 
@@ -119,4 +123,6 @@
     box-shadow: 0 0 0 0.25rem rgba(244, 208, 63, 0.4);
   }
 </style>
-```
+
+<slot />
+
