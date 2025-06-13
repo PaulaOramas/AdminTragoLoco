@@ -1,2 +1,122 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+```svelte
+<script>
+  let cedula = '';
+  let contrasena = '';
+
+  function validarYEnviar(e) {
+    e.preventDefault();
+
+    if (cedula.length < 10 || cedula.length > 13) {
+      alert("⚠️ La cédula o RUC debe tener entre 10 y 13 caracteres.");
+      return;
+    }
+    if (contrasena.length < 6) {
+      alert("⚠️ La contraseña debe tener al menos 6 caracteres.");
+      return;
+    }
+
+    fetch(`https://eltragolocorest.runasp.net/api/Login/Usuario/${cedula}`)
+      .then(res => {
+        if (!res.ok) throw new Error("Usuario no encontrado");
+        return res.json();
+      })
+      .then(data => {
+        if (data.PASSWORD === contrasena && data.LOG_ROL === "ADM") {
+          localStorage.setItem("isAdmin", "true");
+          localStorage.setItem("adminCiRuc", cedula);
+          window.location.href = "/Dashboard";
+        } else {
+          alert("❌ Usuario, contraseña o rol incorrectos.");
+          contrasena = '';
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        alert("❌ Error al autenticar. Verifique sus credenciales.");
+        contrasena = '';
+      });
+  }
+</script>
+
+<!-- Bootstrap y Bootstrap Icons siguen funcionando si los dejas en app.html -->
+<div class="login-card shadow-sm">
+  <h3 class="text-center mb-4 fw-bold text-dark">
+    <i class="bi bi-shield-lock-fill text-primary"></i> Login Administrador
+  </h3>
+
+  <form autocomplete="off" novalidate on:submit={validarYEnviar}>
+    <div class="mb-3 input-group">
+      <i class="bi bi-person-fill form-icon"></i>
+      <input type="text" bind:value={cedula} class="form-control" placeholder="Cédula / RUC" maxlength="13" required aria-label="Cédula o RUC" />
+    </div>
+
+    <div class="mb-3 input-group">
+      <i class="bi bi-key-fill form-icon"></i>
+      <input type="password" bind:value={contrasena} class="form-control" placeholder="Contraseña" required aria-label="Contraseña" />
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100 fw-bold mt-3">
+      <i class="bi bi-box-arrow-in-right"></i> Entrar
+    </button>
+  </form>
+</div>
+
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    background-color: #2c2f36;
+    font-family: 'Raleway', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #f0db7d;
+  }
+  .login-card {
+    background: whitesmoke;
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    color: #f0db7d;
+  }
+  .form-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #c0c0c0;
+  }
+  .input-group {
+    position: relative;
+  }
+  .input-group input {
+    padding-left: 2.5rem;
+    background-color: whitesmoke;
+    color: black;
+    border: 1px solid #666;
+  }
+  .input-group input::placeholder {
+    color: #cccccc;
+  }
+  .input-group input:focus {
+    border-color: #d4af37;
+    box-shadow: 0 0 5px #d4af37;
+    outline: none;
+  }
+  .btn-primary {
+    background-color: #d4af37;
+    border: none;
+    color: #2c2f36;
+    font-weight: 700;
+  }
+  .btn-primary:hover,
+  .btn-primary:focus {
+    background-color: #f0db7d;
+    border-color: #f0db7d;
+    color: #2c2f36;
+    box-shadow: 0 0 0 0.25rem rgba(244, 208, 63, 0.4);
+  }
+</style>
+```
