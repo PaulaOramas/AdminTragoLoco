@@ -126,11 +126,11 @@
       <div class="charts">
         <div class="chart-card">
           <h3>🍹 Productos Registrados</h3>
-          <canvas bind:this={productsChart} width="400" height="320"></canvas>
+          <canvas bind:this={productsChart} width="600" height="340"></canvas>
         </div>
         <div class="chart-card">
           <h3>🧑‍🤝‍🧑 Distribución de Usuarios</h3>
-          <canvas bind:this={usersChart} width="400" height="320"></canvas>
+          <canvas bind:this={usersChart} width="600" height="340"></canvas>
         </div>
       </div>
     </div>
@@ -251,7 +251,8 @@
   canvas {
     display: block;
     max-width: 100%;
-    height: 320px !important;
+    width: 100%;
+    height: 340px !important;
     margin: 0 auto;
   }
 </style>
