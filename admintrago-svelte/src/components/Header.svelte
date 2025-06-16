@@ -15,7 +15,7 @@
 
 <header class="header-placeholder">
   <div class="logo">
-    <a href="/dashboard" class="logo-link" aria-label="Ir a la página principal">
+    <a href="/app/dashboard" class="logo-link" aria-label="Ir a la página principal">
       <img src="/imagenes/logo.png" alt="Logo Trago Loco" class="logo-img" />
       <span class="panel-title">Panel Admin</span>
     </a>

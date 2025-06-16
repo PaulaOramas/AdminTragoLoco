@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import { goto } from '$app/navigation';
 
   let productos = [];
   let categorias = [];
@@ -60,7 +61,7 @@
   }
 
   function volverPanel() {
-    window.location.href = `/dashboard`;
+    goto("/dashboard");
   }
 </script>
 
@@ -85,28 +86,19 @@
     <button class="btn btn-warning fw-bold" aria-label="Agregar nuevo producto" on:click={agregarProducto}>
       <i class="bi bi-plus-circle"></i> Agregar Producto
     </button>
-    <button class="btn btn-outline-light fw-bold" aria-label="Volver al panel de administración" on:click={volverPanel}>
-      <i class="bi bi-arrow-left-circle"></i> Volver al Panel
-    </button>
   </div>
 
   <div class="mb-3 d-flex gap-3 flex-wrap">
-    <select bind:value={filtroCategoria} class="form-select w-auto" id="filtroCategoria">
-      <option value="">Todas las categorías</option>
-      {#each categorias as cat}
-        <option value={cat.CAT_NOMBRE}>{cat.CAT_NOMBRE}</option>
-      {/each}
-    </select>
-    <input
-      type="search"
-      bind:value={busquedaNombre}
-      class="form-control w-auto"
-      placeholder="Buscar por Nombre"
-      aria-label="Buscar producto por nombre"
-    />
+    <!-- filtros aquí -->
   </div>
 
-  <div class="shadow-lg p-4 bg-secondary text-light rounded-4" id="productosTableContainer">
+  <div class="card shadow-lg p-4 rounded-4 bg-secondary text-light card-lista">
+    <div class="d-flex justify-content-end mb-3">
+      <a href="/app/dashboard" class="btn btn-outline-light fw-bold">
+        <i class="bi bi-arrow-left-circle-fill"></i> Volver al Panel
+      </a>
+    </div>
+    <!-- Aquí tu tabla de productos -->
     {#if cargando}
       <div class="alert alert-info text-center m-0">Cargando productos...</div>
     {:else if error}
@@ -133,10 +125,20 @@
                 <td>${parseFloat(prod.PROD_PRECIO).toFixed(2)}</td>
                 <td>{prod.PROD_STOCK}</td>
                 <td class="btn-icon-group">
-                  <button class="btn btn-sm btn-warning me-1" title="Editar" on:click={() => editarProducto(prod.PROD_ID)}>
+                  <button
+                    class="btn btn-sm btn-warning me-1"
+                    title="Editar"
+                    aria-label="Editar producto"
+                    on:click={() => editarProducto(prod.PROD_ID)}
+                  >
                     <i class="bi bi-pencil-fill"></i>
                   </button>
-                  <button class="btn btn-sm btn-info text-white" title="Ver Detalle" on:click={() => verDetalleProducto(prod.PROD_ID)}>
+                  <button
+                    class="btn btn-sm btn-info text-white"
+                    title="Ver Detalle"
+                    aria-label="Ver detalle del producto"
+                    on:click={() => verDetalleProducto(prod.PROD_ID)}
+                  >
                     <i class="bi bi-eye-fill"></i>
                   </button>
                 </td>
