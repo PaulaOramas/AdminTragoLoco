@@ -15,12 +15,12 @@
 
 <header class="header-placeholder">
   <div class="logo">
-    <a href="/dashboard" class="logo-link" aria-label="Ir a la página principal" style="display:flex; align-items:center; gap:0.5rem;">
-      <img src="/imagenes/logo.png" alt="Logo Trago Loco" style="height:40px;" />
-      <span>Panel Admin</span>
+    <a href="/dashboard" class="logo-link" aria-label="Ir a la página principal">
+      <img src="/imagenes/logo.png" alt="Logo Trago Loco" class="logo-img" />
+      <span class="panel-title">Panel Admin</span>
     </a>
   </div>
-  <div class="text-end" style="display:flex; align-items:center; gap:1rem;">
+  <div class="text-end">
     <button class="menu-toggle" aria-label="Mostrar menú" on:click={toggleMenu}>☰</button>
     <button class="logout-btn" on:click={cerrarSesion}>🔒 Cerrar Sesión</button>
   </div>
@@ -34,29 +34,58 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #222;
+    padding: 14px 32px;
+    background-color: #484b52;
     color: #f0db7d;
-    position: relative;
-    z-index: 10;
+    border-radius: 0 0 2rem 2rem;
+    box-shadow: 0 2px 8px #00000044;
+    margin-bottom: 1.5rem;
   }
 
-  .logo {
+  .logo-link {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.7rem;
+    text-decoration: none;
+  }
+
+  .logo-img {
+    height: 40px;
+    margin-right: 0.5rem;
+  }
+
+  .panel-title {
+    font-family: 'Raleway', Arial, sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #f0db7d;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 2px #00000055;
+  }
+
+  .text-end {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
   .logout-btn {
     background: none;
-    border: none;
+    border: 2px solid #f0db7d;
     color: #f0db7d;
     cursor: pointer;
-    font-size: 1.2rem;
-    transition: color 0.2s;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 1.5rem;
+    padding: 6px 18px;
+    transition: all 0.2s;
+    margin-left: 0.5rem;
   }
   .logout-btn:hover {
-    color: #d4af37;
+    background: #f0db7d;
+    color: #484b52;
+    border-color: #f0db7d;
+    box-shadow: 0 0 8px #f0db7d88;
   }
 
   .menu-toggle {
@@ -64,7 +93,7 @@
     border: none;
     color: #f0db7d;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     display: none;
   }
 
@@ -81,6 +110,15 @@
   }
 
   @media (max-width: 600px) {
+    .header-placeholder {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 10px 8px;
+      border-radius: 0 0 1.2rem 1.2rem;
+    }
+    .panel-title {
+      font-size: 1.3rem;
+    }
     .menu-toggle {
       display: inline-block;
     }
