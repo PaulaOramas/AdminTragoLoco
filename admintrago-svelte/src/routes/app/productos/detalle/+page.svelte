@@ -83,7 +83,7 @@
         </div>
       </div>
       <div class="text-center">
-        <a href="/admin/productos" class="btn btn-primary">
+        <a href="/app/productos" class="btn btn-primary">
           <i class="bi bi-arrow-left"></i> Volver a la lista
         </a>
       </div>
@@ -93,30 +93,43 @@
 
 <style>
   .text-dorado {
-    color: #cda34d;
+    color: #f0db7d;
   }
 
   .detalle-card {
-    padding: 2rem;
+    background-color: #23252b;
+    color: #f8f9fa;
+    padding: 1.2rem 1.5rem;         /* Menos padding */
     border-radius: 1rem;
+    box-shadow: 0 6px 18px rgba(212, 175, 55, 0.15);
+    max-width: 480px;               /* Más angosto */
+    margin: 0 auto;                 /* Centrado horizontal */
   }
 
   .detalle-card .form-label {
     font-weight: 600;
+    color: #f0db7d;
   }
 
   .detalle-card input,
   .detalle-card textarea {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+    background-color: #23252b;
+    color: #f8f9fa;
+    border: 1.5px solid #f0db7d;
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
   }
 
   .detalle-card input:disabled,
   .detalle-card textarea:disabled {
-    background-color: #e9ecef;
+    background-color: #23252b;
+    color: #f8f9fa;
+    opacity: 1;
   }
 
   .detalle-card .btn {
-    min-width: 150px;
+    min-width: 140px;
+    font-size: 1rem;
+    padding: 0.4rem 1.2rem;
   }
 </style>
