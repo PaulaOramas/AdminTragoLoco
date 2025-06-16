@@ -42,8 +42,11 @@
   });
 
   function editarProducto(productId) {
-    // Redirigir a la página de edición de producto
-    window.location.href = `/editar-producto?id=${productId}`;
+    window.location.href = `/app/productos/editar?id=${productId}`;
+  }
+
+  function verDetalleProducto(productId) {
+    window.location.href = `/app/productos/detalle?id=${productId}`;
   }
 
   async function eliminarProducto(productId) {
@@ -111,6 +114,7 @@
             <td>{producto.CAT_NOMBRE}</td>
             <td>
               <button class="btn btn-warning btn-sm" on:click={() => editarProducto(producto.PROD_ID)}>Editar</button>
+              <button class="btn btn-info btn-sm" on:click={() => verDetalleProducto(producto.PROD_ID)}>Ver Detalle</button>
               <button class="btn btn-danger btn-sm" on:click={() => eliminarProducto(producto.PROD_ID)}>Eliminar</button>
             </td>
           </tr>
